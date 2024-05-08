@@ -1,1 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Weather Dashboard</title>
+    <link rel="stylesheet" href="./assets/css/style.css"/>
+</head>
 
+<body>
+    <header>
+        <h1>Weather Dashboard</h1>
+    </header>
+
+    <main id="container">
+        <div id="left" class="box">
+            <div id="form" class="inner-box">
+                <form>
+                    <h2>Search for a City:</h2>
+                    <input id="input" type="text" class="form-control" placeholder="Seattle" aria-label="Seattle">
+                    <br>
+                    <button id="input-btn">Search</button>
+                </form>
+            </div>
+
+            <div id="history" class="inner-box"></div>
+        </div>
+
+        <div id="right" class="box">Please choose a city!</div>
+    </main>
+
+    <script src="./assets/js/logic.js"></script>
+</body>
+
+</html>

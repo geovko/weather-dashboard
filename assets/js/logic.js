@@ -52,7 +52,8 @@ function renderPage() {
 function weatherStats(data, index) {
     const list = data.list;
     const card = $('<div>');
-    card.append(`<p>Status: ${list[index].weather[0].main}</p>`);
+    console.log(list[index].weather[0].icon);
+    card.append(`<img src='${list[index].weather[0].icon}.png' alt ='${list[index].weather[0].icon}'>`);
     card.append(`<p>Temp: ${list[index].main.temp}\u00B0F</p>`);
     card.append(`<p>Wind: ${list[index].wind.speed}mph</p>`);
     card.append(`<p>Humidity: ${list[index].main.humidity}%</p>`);

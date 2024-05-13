@@ -6,7 +6,6 @@ let pastCities = JSON.parse(localStorage.getItem('cities'));
 let currentCity = JSON.parse(localStorage.getItem('currentCity'));
 const apiKey = '1a3482dd9672cae11ded6a5b0ae104ae';
 
-
 // const currentCity (pull from most recent in local storage) (check for repeats?)
 function renderHistory() {
     // Render search history
@@ -24,6 +23,7 @@ function renderHistory() {
     return;
 }
 
+// renders page, deals with initial stage of webpage
 function renderPage() {
     // SET INITIAL
     if (pastCities == null || pastCities == []) {
@@ -38,7 +38,6 @@ function renderPage() {
         currentCity = pastCities[(pastCities.length-1)];
         alert('Please enter a city!');
     }
-
     
     renderHistory();
 
@@ -53,7 +52,7 @@ function renderPage() {
 function weatherStats(data, index) {
     const list = data.list;
     const card = $('<div>');
-    card.append(`<p>Weather: ${list[index].weather[0].main}</p>`);
+    card.append(`<p>Status: ${list[index].weather[0].main}</p>`);
     card.append(`<p>Temp: ${list[index].main.temp}\u00B0F</p>`);
     card.append(`<p>Wind: ${list[index].wind.speed}mph</p>`);
     card.append(`<p>Humidity: ${list[index].main.humidity}%</p>`);
@@ -68,22 +67,29 @@ function renderForecast(data) {
     // current day forecast
     const weatherNow = $('<div>');
     weatherNow.addClass('inner-box');
+    weatherNow.addClass('current');
     weatherNow.append(`<h2>${data.city.name} (${data.city.country}): ${today.format('MM/DD/YYYY')}</h2>`);
     weatherNow.append(weatherStats(data, 0));
     weatherBox.append(weatherNow);
 
     // following five-day forecast
     const weatherLater = $('<div>');
-    weatherLater.attr('class', 'inner-box');
+    weatherLater.addClass('inner-box');
+    weatherLater.attr('id', 'weather-forecast');
+    weatherLater.append('<h2>5-Day Forecast:</h2>')
+    
+    const forecastBox = $('<div>');
+    forecastBox.addClass('forecast-box');
     
     for (i=7; i<40; i+=8) {
         const card = $('<div>');
         card.addClass('forecast');
         card.append(`<h3>${today.add(((i+1)/8), 'day').format('MM/DD/YYYY')}</h3>`);
         card.append(weatherStats(data, i));
-        weatherLater.append(card);
+        forecastBox.append(card);
     }
 
+    forecastBox.appendTo(weatherLater);
     weatherBox.append(weatherLater);
 }
 
@@ -126,6 +132,7 @@ function getWeather(lat, lon) {
         });
 }
 
+// handles the input event
 function handleInput(event) {
     event.preventDefault();
     
@@ -137,7 +144,7 @@ function handleInput(event) {
     return;
 }
 
-// document ready + event listeners (submit) + history buttons
+// load page...
 $(document).ready(function () {
     console.log('ready');
 

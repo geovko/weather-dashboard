@@ -1,54 +1,147 @@
-* {
-    margin: auto;
+:root {
+    --main-bg-color: rgb(18, 49, 98);
+    --light: white;
+    --dark: black;
+    --darker-color: rgb(16, 26, 56);
 }
 
-header {
-    background-color: black;
-    color: white;
-    text-align: center;
-    padding: 10px;
+* {
+    margin: auto;
+    font-family:'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+    border-radius: 3px;
+}
+
+body {
+    background-color: var(--main-bg-color);
 }
 
 h2, h3 {
-    margin: 5px;
+    margin: 5px 5px 10px 5px;
 }
 
 p {
-    margin: 3px;
+    margin: 10px 5px;
 }
 
-input {
-    margin: 5px;
-}
-
-button {
-    margin: 10px;
-}
-
-form {
+header {
+    background-image: linear-gradient(to right, black, rgb(17, 17, 66), rgb(40, 40, 167));
+    color: var(--light);
     text-align: center;
+    padding: 10px;
+    margin-bottom: 10px;
 }
 
 #container {
     display: flex;
-    justify-content: space-evenly;
 }
 
-.box {
-    border: solid 3px green;
+.inner-box {
+    background-color: var(--light);
+    margin: 12px;
+    padding: 10px;
+}
+
+/* ========== Weather Section ========== */
+#right {
+    width: 80%;
+    margin-top: 10px;
+}
+
+/* CURRENT FORECAST */
+.current {
+    background-color: var(--light);
+}
+
+/* 5-DAY FORECAST */
+#weather-forecast {
+    background-color: var(--main-bg-color);
+    color: var(--light);
+}
+
+.forecast-box {
+    color: var(--light);
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.forecast {
+    background-color: var(--darker-color);
+    width: 120px;
+    text-align: left;
+    padding: 10px 7px 7px 7px;
+    margin: 5px;
+}
+
+.forecast:hover {
+    box-shadow: 0px 0px 5px var(--light);
+}
+
+/* ========== Past Searches Section ========== */
+#left {
+    width: 270px;
+    margin-top: 10px;
+    text-align: center;
+}
+
+/* FORM INPUT */
+input {
+    width: 80%
+}
+
+#input {
+    padding: 10px;
+}
+
+#input-btn {
+    background-color: var(--main-bg-color);
+    color: var(--light);
+    margin: 10px;
+    padding: 10px;
+}
+
+#input-btn:hover {
+    background-color: var(--darker-color);
+    box-shadow: 0px 0px 5px var(--main-bg-color);
+}
+
+/* SEARCH HISTORY */
+#history {
+    background-color: var(--light);
 }
 
 .past-city {
-    background-color: grey;
+    background-color: var(--darker-color);
+    color: var(--light);
     margin: 2px;
-    padding: 3px;
+    padding: 7px;
+    text-align: center;
 }
 
-#left {
-    width: 300px;
-    margin-top: 50px;
+.past-city:hover {
+    background-color: var(--dark);
 }
 
-#right {
-    width: 70%;
-}
+/* ========== SMALLER SCREEN ========== */
+@media screen and (max-width: 576px) {
+    body {
+        padding: 2px;
+    }
+    
+    #container, .forecast-box {
+        display: block;
+    }
+
+    .inner-box {
+        width: 87%;
+        text-align: center;
+    }
+    
+    header, #left, #right {
+        margin-bottom: 50px;
+    }
+
+    .forecast {
+        text-align: center;
+        width: 90%;
+    }
+  }

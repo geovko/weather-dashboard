@@ -6,7 +6,7 @@ let pastCities = JSON.parse(localStorage.getItem('cities'));
 let currentCity = JSON.parse(localStorage.getItem('currentCity'));
 const apiKey = '1a3482dd9672cae11ded6a5b0ae104ae';
 
-// const currentCity (pull from most recent in local storage) (check for repeats?)
+// renders past searches
 function renderHistory() {
     // Render search history
     if (pastCities.length>10) {
@@ -53,7 +53,7 @@ function weatherStats(data, index) {
     const list = data.list;
     const card = $('<div>');
     console.log(list[index].weather[0].icon);
-    card.append(`<img src='${list[index].weather[0].icon}.png' alt ='${list[index].weather[0].icon}'>`);
+    card.append(`<img src='./assets/images/${list[index].weather[0].icon}.png' alt ='${list[index].weather[0].description}'>`);
     card.append(`<p>Temp: ${list[index].main.temp}\u00B0F</p>`);
     card.append(`<p>Wind: ${list[index].wind.speed}mph</p>`);
     card.append(`<p>Humidity: ${list[index].main.humidity}%</p>`);
@@ -61,7 +61,7 @@ function weatherStats(data, index) {
     return card;
 }
 
-// render weather forecast data
+// renders weather forecast data
 function renderForecast(data) {
     const today = dayjs();
 
@@ -94,7 +94,7 @@ function renderForecast(data) {
     weatherBox.append(weatherLater);
 }
 
-// get lat and lon from city name
+// gets lat and lon from city name
 function getGeo(city) {
     fetch(`https://api.openweathermap.org/geo/1.0/direct?q=${city}&limit=1&appid=${apiKey}`)
         .then(response => {
@@ -118,7 +118,7 @@ function getGeo(city) {
         });
 }
 
-// get weather data from API
+// gets weather data from API
 function getWeather(lat, lon) {
     fetch(`https://api.openweathermap.org/data/2.5/forecast?lat=${lat}&lon=${lon}&appid=${apiKey}&units=imperial`)
         .then(response => {
@@ -145,7 +145,7 @@ function handleInput(event) {
     return;
 }
 
-// load page...
+// loads page...
 $(document).ready(function () {
     console.log('ready');
 

@@ -9,16 +9,44 @@ header {
     padding: 10px;
 }
 
+h2, h3 {
+    margin: 5px;
+}
+
+p {
+    margin: 3px;
+}
+
+input {
+    margin: 5px;
+}
+
+button {
+    margin: 10px;
+}
+
+form {
+    text-align: center;
+}
+
 #container {
     display: flex;
+    justify-content: space-evenly;
 }
 
 .box {
     border: solid 3px green;
 }
 
+.past-city {
+    background-color: grey;
+    margin: 2px;
+    padding: 3px;
+}
+
 #left {
     width: 300px;
+    margin-top: 50px;
 }
 
 #right {
